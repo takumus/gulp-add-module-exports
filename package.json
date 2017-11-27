@@ -1,0 +1,14 @@
+{
+  "name": "webpack-add-module-exports",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+
+  },
+  "keywords": [
+  ],
+  "homepage": "https://github.com/takumus/webpack-add-module-exports",
+  "author": "takumus",
+  "license": "MIT"
+}
