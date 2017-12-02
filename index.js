@@ -17,7 +17,7 @@ module.exports = function(exportName) {
             //    console.log(`module.exports added`);
             //}
             contents = contents.replace(/exports\.([^\s]*)/g, 'module.exports.$1 = exports.$1');
-            contents = contents.replace('module.exports.default', 'module.exports = module.exports.default');
+            contents = contents.replace(/module.exports.default = exports.default = ([^\s;]*);/g, 'module.exports = $1; module.exports.default = $1; exports.default = $1;');
             file.contents = new Buffer(contents);
             return callback(null, file);
         }
