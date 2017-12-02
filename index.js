@@ -12,11 +12,12 @@ module.exports = function(exportName) {
         }
         if (file.isBuffer()) {
             var contents = String(file.contents);
-            var exportsDefault = `exports.default = ${exportName};`;
-            if (contents.indexOf(exportsDefault) >= 0) {
-                console.log(`module.exports added`);
-            }
-            contents = contents.replace(exportsDefault, `${exportsDefault}\nmodule.exports = ${exportName};\nmodule.exports.default = ${exportName}\n`);
+            //var exportsDefault = `exports.default = ${exportName};`;
+            //if (contents.indexOf(exportsDefault) >= 0) {
+            //    console.log(`module.exports added`);
+            //}
+            contents = contents.replace(/exports\.([^\s]*)/g, 'module.exports.$1 = exports.$1');
+            contents = contents.replace('module.exports.default', 'module.exports = module.exports.default');
             file.contents = new Buffer(contents);
             return callback(null, file);
         }
